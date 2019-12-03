@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: ''
+    token: '',
+    hasToken: false
   },
   mutations: {
     SET_TOKEN (state, token) {
       state.token = token
+    },
+    SET_HAS_TOKEN (state) {
+      state.hasToken = true
     }
   },
   actions: {
@@ -31,6 +35,7 @@ export default new Vuex.Store({
         axios.post('/token', qs.stringify(oauth), config)
           .then((res) => {
             commit('SET_TOKEN', res.data.access_token)
+            commit('SET_HAS_TOKEN')
             resolve(res)
           })
       })

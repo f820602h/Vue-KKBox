@@ -1,15 +1,28 @@
 <template>
   <div class="home">
-    123
+    <!-- <Card v-for="" :key="id" :src="src" :text="text"/> -->
+    <Card />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Card from '@/components/Card'
 export default {
   name: 'Home',
+  components: {
+    Card
+  },
+  data () {
+    return {
+
+    }
+  },
   computed: {
     ...mapState(['token'])
+  },
+  mounted () {
+    this.getCharts()
   },
   methods: {
     getCharts () {
@@ -18,14 +31,11 @@ export default {
           Authorization: `Bearer ${this.token}`
         }
       }
-      this.$http.get('https://api.kkbox.com/v1.1/charts/_YtW5jxRZocp_U_1Rk?territory=TW', config)
+      this.$http.get('https://api.kkbox.com/v1.1/charts/PYQbSKw4piAuZAS8z8?territory=TW', config)
         .then(res => {
           console.log(res)
         })
     }
-  },
-  mounted () {
-    this.getCharts()
   }
 }
 </script>
