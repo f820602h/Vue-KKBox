@@ -1,54 +1,17 @@
 <template>
   <div class="home">
-    <div
-      class="card"
-      style="width: 18rem;"
-    >
-      <div class="card-body">
-        <h5 class="card-title">
-          Card title
-        </h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <a
-          href="#"
-          class="btn btn-primary"
-        >Go somewhere</a>
-      </div>
-    </div>
+    123
   </div>
 </template>
 
 <script>
-import qs from 'query-string'
-
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
-  data () {
-    return {
-      token: ''
-    }
+  computed: {
+    ...mapState(['token'])
   },
   methods: {
-    getToken () {
-      const config = {
-        headers: {
-          Accept: 'application/x-www-form-urlencoded',
-          'Coutent-Type': 'application/x-www-form-urlencoded'
-        }
-      }
-      const oauth = {
-        grant_type: 'client_credentials',
-        client_id: '3ff2253ebfd6daf6ba80564803a8a673',
-        client_secret: 'aae46637ec523c3e3b15b610645fe830'
-      }
-      this.$http.post('/token', qs.stringify(oauth), config)
-        .then((res) => {
-          this.token = res.data.access_token
-          this.getCharts()
-        })
-    },
     getCharts () {
       const config = {
         headers: {
@@ -62,7 +25,7 @@ export default {
     }
   },
   mounted () {
-    this.getToken()
+    this.getCharts()
   }
 }
 </script>
