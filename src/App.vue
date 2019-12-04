@@ -15,11 +15,19 @@ export default {
   components: {
     Navbar
   },
-  mounted () {
-    this.GET_TOKEN()
+  async mounted () {
+    await this.GET_TOKEN()
+    await this.GET_CHARTS()
   },
   methods: {
-    ...mapActions(['GET_TOKEN'])
+    ...mapActions(['GET_TOKEN', 'GET_CHARTS'])
   }
 }
 </script>
+
+<style lang="scss">
+body{
+  min-height: 100vh;
+  background: linear-gradient(bottom,#5f2c82, #49a09d) no-repeat;
+}
+</style>

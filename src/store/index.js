@@ -8,14 +8,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: '',
-    hasToken: false
+    charts: []
+  },
+  getters: {
+    getApiConfig (state) {
+      return { headers: { Authorization: `Bearer ${state.token}` } }
+    }
   },
   mutations: {
     SET_TOKEN (state, token) {
       state.token = token
     },
-    SET_HAS_TOKEN (state) {
-      state.hasToken = true
+    SET_CHARTS (state, charts) {
+      state.charts = charts
     }
   },
   actions: {
@@ -35,7 +40,15 @@ export default new Vuex.Store({
         axios.post('/token', qs.stringify(oauth), config)
           .then((res) => {
             commit('SET_TOKEN', res.data.access_token)
-            commit('SET_HAS_TOKEN')
+            resolve(res)
+          })
+      })
+    },
+    GET_CHARTS ({ state, getters, commit }) {
+      return new Promise((resolve, reject) => {
+        axios.get('https://api.kkbox.com/v1.1/charts?territory=TW', getters.getApiConfig)
+          .then((res) => {
+            commit('SET_CHARTS', res.data.data)
             resolve(res)
           })
       })

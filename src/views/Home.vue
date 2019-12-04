@@ -1,41 +1,29 @@
 <template>
   <div class="home">
-    <!-- <Card v-for="" :key="id" :src="src" :text="text"/> -->
-    <Card />
+    <h2 class="mt-5">新歌日榜</h2>
+    <CardGroup :listData="newCharts" />
+    <h2 class="mt-5">單曲日榜</h2>
+    <CardGroup :listData="dailyCharts" />
   </div>
 </template>
 
 <script>
+import CardGroup from '@/components/CardGroup'
 import { mapState } from 'vuex'
-import Card from '@/components/Card'
 export default {
   name: 'Home',
   components: {
-    Card
-  },
-  data () {
-    return {
-
-    }
+    CardGroup
   },
   computed: {
-    ...mapState(['token'])
-  },
-  mounted () {
-    this.getCharts()
-  },
-  methods: {
-    getCharts () {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${this.token}`
-        }
+    ...mapState({
+      dailyCharts (state) {
+        return state.charts.slice(1, 6)
+      },
+      newCharts (state) {
+        return state.charts.slice(7, 12)
       }
-      this.$http.get('https://api.kkbox.com/v1.1/charts/PYQbSKw4piAuZAS8z8?territory=TW', config)
-        .then(res => {
-          console.log(res)
-        })
-    }
+    })
   }
 }
 </script>
