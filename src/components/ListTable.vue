@@ -2,7 +2,7 @@
   <div>
     <!-- <h2></h2> -->
     <div class="topThree my-5 row justify-content-center">
-      <div class="col-4" v-for="(item, index) in topThree" :key="item.id">
+      <div class="col-4" v-for="(item, index) in topThree" :key="item.id" @click="playSong(item.id)">
         <div class="card h-100" >
           <img class="card-img-top" :src="item.album.images[1].url" alt="">
           <div class="d-flex">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="other">
-      <div v-for="(item, index) in other" :key="item.id">
+      <div v-for="(item, index) in other" :key="item.id" @click="playSong(item.id)">
         <div class="card flex-row h-100 mt-3">
           <div class="rank">
             <h4 class="d-flex justify-content-center align-items-center">{{ index+4 }}</h4>
@@ -50,6 +50,11 @@ export default {
     other () {
       return this.listData.slice(4)
     }
+  },
+  methods: {
+    playSong (id) {
+      this.$store.commit('SET_MUSIC_ID', id)
+    }
   }
 }
 </script>
@@ -60,9 +65,10 @@ export default {
   border: none;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 .topRank{
-  width: 85px;
+  width: 25%;
   height: 100%;
   border-radius: 50%;
   color: white;
@@ -81,11 +87,25 @@ export default {
       color: white;
     }
   }
+  .card-body{
+    width: 60%;
+    color: white;
+  }
 }
-.card-body{
-  color: white;
+.topThree{
+  .card-body{
+    max-width: 75%;
+    color: white;
+  }
 }
+
 h5{
+  width: 100%;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.card-text{
   width: 100%;
   overflow:hidden;
   text-overflow: ellipsis;

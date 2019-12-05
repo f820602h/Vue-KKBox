@@ -7,7 +7,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    ready: false,
     token: '',
+    musicId: '',
     charts: []
   },
   getters: {
@@ -16,11 +18,17 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_READY (state) {
+      state.ready = true
+    },
     SET_TOKEN (state, token) {
       state.token = token
     },
     SET_CHARTS (state, charts) {
       state.charts = charts
+    },
+    SET_MUSIC_ID (state, id) {
+      state.musicId = id
     }
   },
   actions: {

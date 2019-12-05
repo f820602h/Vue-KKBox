@@ -26,7 +26,6 @@ export default {
       this.$http.get(`https://api.kkbox.com/v1.1/charts/${listId}/tracks?territory=TW&limit=25`, config)
         .then(res => {
           this.listData = res.data.data
-          console.log(res.data.data)
         })
     }
   },

@@ -3,25 +3,33 @@
     <div class="bgAnimat"></div>
     <Navbar />
     <div class="container padding">
-      <router-view />
+      <router-view v-if="ready"/>
     </div>
+    <MusicPlayer />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import Navbar from '@/components/Navbar'
+import MusicPlayer from '@/components/MusicPlayer'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    MusicPlayer
+  },
+  computed: {
+    ...mapState(['ready'])
   },
   async mounted () {
     await this.GET_TOKEN()
     await this.GET_CHARTS()
+    this.SET_READY()
   },
   methods: {
-    ...mapActions(['GET_TOKEN', 'GET_CHARTS'])
+    ...mapActions(['GET_TOKEN', 'GET_CHARTS']),
+    ...mapMutations(['SET_READY'])
   }
 }
 </script>
