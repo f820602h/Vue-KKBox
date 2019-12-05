@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <h2></h2> -->
     <div class="topThree my-5 row justify-content-center">
       <div class="col-4" v-for="(item, index) in topThree" :key="item.id" @click="playSong(item.id)">
         <div class="card h-100" >

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>{{  }}</h2>
+    <h1 class="mt-5 text-light font-weight-bold">{{ title }}</h1>
+    <hr>
     <ListTable :listData="listData"/>
   </div>
 </template>
@@ -11,7 +12,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      listData: []
+      listData: [],
+      title: ''
     }
   },
   components: {
@@ -31,10 +33,13 @@ export default {
   },
   mounted () {
     this.getSongLsit(this.$route.query.id)
+    this.title = this.$route.query.title
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+hr{
+  border-top: 1px solid white
+}
 </style>

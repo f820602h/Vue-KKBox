@@ -12,10 +12,10 @@
               <!-- <router-link class="nav-link" to="/Chart">排行榜</router-link> -->
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="找歌曲、歌手、專輯" v-model.trim="searchText">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="button" @click="search">搜尋</button>
-          </form>
+          <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="找歌曲、歌手、專輯" v-model.trim="searchText" @keydown.enter="search">
+            <button class="btn btn-outline-info my-2 my-sm-0" @click="search">搜尋</button>
+          </div>
         </div>
       </div>
     </nav>
@@ -33,8 +33,10 @@ export default {
   methods: {
     search () {
       if (this.searchText) {
-        this.$router.push(`/Search?find=${this.searchText}`)
+        this.$router.push(`/Search?find=${this.searchText}`).catch(() => {})
+        this.searchText = ''
       }
+      return false
     }
   }
 }
@@ -48,7 +50,13 @@ export default {
   left: 0;
   width: 100%;
 }
-button, input{
-  outline: unset;
+button{
+  padding: 0.25rem 0.75rem;
+}
+.form-control:focus{
+  outline: none;
+}
+button:focus{
+  outline: none;
 }
 </style>
