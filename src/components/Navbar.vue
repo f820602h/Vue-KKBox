@@ -13,8 +13,8 @@
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="找歌曲、歌手、專輯">
-            <button class="btn btn-outline-info my-2 my-sm-0" type="button">搜尋</button>
+            <input class="form-control mr-sm-2" type="search" placeholder="找歌曲、歌手、專輯" v-model.trim="searchText">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="button" @click="search">搜尋</button>
           </form>
         </div>
       </div>
@@ -24,7 +24,19 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data () {
+    return {
+      searchText: ''
+    }
+  },
+  methods: {
+    search () {
+      if (this.searchText) {
+        this.$router.push(`/Search?find=${this.searchText}`)
+      }
+    }
+  }
 }
 </script>
 
