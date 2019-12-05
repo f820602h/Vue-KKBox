@@ -1,12 +1,12 @@
 <template>
   <div class="chart">
-    <h2 class="mt-5">新歌日榜</h2>
+    <h2 class="mt-5 text-light font-weight-bold">新歌日榜</h2>
     <hr>
     <CardGroup :listData="newCharts" />
-    <h2 class="mt-5">單曲日榜</h2>
+    <h2 class="mt-5 text-light font-weight-bold">單曲日榜</h2>
     <hr>
     <CardGroup :listData="dailyCharts" />
-    <h2 class="mt-5">曲風週榜</h2>
+    <h2 class="mt-5 text-light font-weight-bold">曲風週榜</h2>
     <hr>
     <CardGroup :listData="weeklyCharts" />
   </div>
@@ -37,10 +37,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2{
-  font-weight: bold;
-  color: white
-}
 hr{
   border-top: 1px solid white
 }
