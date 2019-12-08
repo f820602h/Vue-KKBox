@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import qs from 'query-string'
+import qs from 'query-string'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     ready: false,
-    token: '2afgLacVWEmG0fpvJB7zFw==',
+    token: '',
     key: 'AIzaSyCW_sKFqpwDdBimQCRRwxGMhBU-L1Kcwjc',
     musicId: '',
     listId: '',
@@ -45,26 +45,26 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // GET_TOKEN ({ state, commit }) {
-    //   const config = {
-    //     headers: {
-    //       Accept: 'application/x-www-form-urlencoded',
-    //       'Coutent-Type': 'application/x-www-form-urlencoded'
-    //     }
-    //   }
-    //   const oauth = {
-    //     grant_type: 'client_credentials',
-    //     client_id: '3ff2253ebfd6daf6ba80564803a8a673',
-    //     client_secret: 'aae46637ec523c3e3b15b610645fe830'
-    //   }
-    //   return new Promise((resolve, reject) => {
-    //     axios.post('/token', qs.stringify(oauth), config)
-    //       .then((res) => {
-    //         commit('SET_TOKEN', res.data.access_token)
-    //         resolve(res)
-    //       })
-    //   })
-    // },
+    GET_TOKEN ({ state, commit }) {
+      const config = {
+        headers: {
+          Accept: 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+      const oauth = {
+        grant_type: 'client_credentials',
+        client_id: '3ff2253ebfd6daf6ba80564803a8a673',
+        client_secret: 'aae46637ec523c3e3b15b610645fe830'
+      }
+      return new Promise((resolve, reject) => {
+        axios.post('https://cors-anywhere.herokuapp.com/https://account.kkbox.com/oauth2/token', qs.stringify(oauth), config)
+          .then((res) => {
+            commit('SET_TOKEN', res.data.access_token)
+            resolve(res)
+          })
+      })
+    },
     GET_CHARTS ({ state, getters, commit }) {
       return new Promise((resolve, reject) => {
         axios.get('https://api.kkbox.com/v1.1/charts?territory=TW', getters.getApiConfig)

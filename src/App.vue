@@ -23,11 +23,12 @@ export default {
     ...mapState(['ready'])
   },
   async mounted () {
+    await this.GET_TOKEN()
     await this.GET_CHARTS()
     this.SET_READY()
   },
   methods: {
-    ...mapActions(['GET_CHARTS']),
+    ...mapActions(['GET_TOKEN', 'GET_CHARTS']),
     ...mapMutations(['SET_READY'])
   }
 }
