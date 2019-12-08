@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: './'
+  publicPath: './Vue-KKBox'
   // devServer: {
   //   proxy: {
   //     '/token': {
