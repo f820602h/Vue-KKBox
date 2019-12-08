@@ -36,6 +36,9 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC|Press+Start+2P&display=swap');
+html{
+  overflow-x: hidden;
+}
 body{
   position: relative;
   font-family: 'Noto Sans TC', sans-serif !important;
