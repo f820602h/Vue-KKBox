@@ -21,7 +21,7 @@ export default {
         return `https://widget.kkbox.com/v1/?id=${state.listId}&type=playlist&terr=TW&lang=TC&autoplay=1`
       },
       setVideoPlayer (state) {
-        return `http://www.youtube.com/embed/${state.videoId}?autoplay=1&theme=light`
+        return `https://www.youtube.com/embed/${state.videoId}?autoplay=1&theme=light`
       }
     })
   }
