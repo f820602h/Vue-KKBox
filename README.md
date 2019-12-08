@@ -1,5 +1,5 @@
 # vue-kkbox
-## KKBOX API X YOUTUBE DATA DPI X VUE CLI
+## KKBOX API x YOUTUBE DATA DPI x VUE CLI
 
 
 ## Project setup
