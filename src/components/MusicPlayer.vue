@@ -1,9 +1,9 @@
 <template>
   <div class="player">
-    <object class="kkbox" type="text/html" v-show="setMusicPlayer" :data="setMusicPlayer">
+    <object class="kkbox" type="text/html" :data="setPlayListPlayer" v-if="playerType == 'kkbox'">
       <param name="autoplay" value="true">
     </object>
-    <!-- <object class="youtube" id="player" type="text/html" width="640" height="390" :data="setVideoPlayer" frameborder="0"></object> -->
+    <object class="youtube" id="player" type="text/html" width="640" height="390" :data="setVideoPlayer" frameborder="0" v-if="playerType == 'youtube'"></object>
   </div>
 </template>
 
@@ -13,19 +13,15 @@ export default {
   name: 'Player',
   computed: {
     ...mapState({
+      playerType: 'playerType',
       setMusicPlayer (state) {
-        if (state.musicId) {
-          return `https://widget.kkbox.com/v1/?id=${state.musicId}&type=song&terr=SG&lang=tc&autoplay=1`
-        } else {
-          return ''
-        }
+        return `https://widget.kkbox.com/v1/?id=${state.musicId}&type=song&terr=TW&lang=TC&autoplay=1`
+      },
+      setPlayListPlayer (state) {
+        return `https://widget.kkbox.com/v1/?id=${state.listId}&type=playlist&terr=TW&lang=TC&autoplay=1`
       },
       setVideoPlayer (state) {
-        if (state.videoId) {
-          return `http://www.youtube.com/embed/${state.videoId}?autoplay=1&theme=light`
-        } else {
-          return ''
-        }
+        return `http://www.youtube.com/embed/${state.videoId}?autoplay=1&theme=light`
       }
     })
   }
@@ -41,12 +37,12 @@ export default {
   width: 300px;
   border-radius: 5px;
   overflow: hidden;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 .kkbox{
   display: block;
   width: 100%;
-  height: 98px;
+  height: 500px;
   transform: scale(1.02)
 }
 .youtube{

@@ -1,17 +1,15 @@
 <template>
   <div>
-    <div class="other">
-      <div v-for="(item, index) in listData" :key="item.id" @click="playSong(item.id, item.name)">
-        <div class="card flex-row h-100 mt-3">
-          <div class="rank">
-            <h4 class="d-flex justify-content-center align-items-center">{{ index + start }}</h4>
-          </div>
-          <div>
-            <img class="card-img-top" :src="item.album.images[0].url" alt="">
-          </div>
-          <div class="card-body">
-            <h5>{{ item.name }}</h5>
-            <p class="card-text">{{ item.album.artist.name }}</p>
+    <div class="topThree my-5 row justify-content-center">
+      <div class="col-4" v-for="(item, index) in listData" :key="item.id" @click="playSong(item.id, item.name)">
+        <div class="card h-100" >
+          <img class="card-img-top" :src="item.album.images[1].url" alt="">
+          <div class="d-flex">
+            <h4 class="topRank d-flex justify-content-center align-items-center mb-0">{{ index+1 }}</h4>
+            <div class="card-body pl-0">
+              <h5>{{ item.name }}</h5>
+              <p class="card-text">{{ item.album.artist.name }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -22,14 +20,10 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  name: 'ListTable',
+  name: 'TopThree',
   props: {
     listData: {
       type: Array,
-      required: true
-    },
-    start: {
-      type: Number,
       required: true
     }
   },
@@ -56,9 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-hr{
-  border-top: 1px solid white
-}
 .card{
   background: rgba(0,0,0,0.5);
   border: none;
@@ -66,21 +57,16 @@ hr{
   overflow: hidden;
   cursor: pointer;
 }
-.other{
- .card-img-top{
-  width: 100px;
-  border-radius: 0px;
-  }
-  .rank{
-    h4{
-      font-family: 'Press Start 2P', cursive;
-      width: 85px;
-      height: 100%;
-      color: white;
-    }
-  }
+.topRank{
+  width: 25%;
+  height: 100%;
+  border-radius: 50%;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+}
+.topThree{
   .card-body{
-    width: 60%;
+    max-width: 75%;
     color: white;
   }
 }

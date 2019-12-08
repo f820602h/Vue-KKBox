@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-wrap mt-3">
     <div class="card mb-2" style="width: 18rem;" v-for="item in listData" :key="item.description">
       <router-link class="link" :to="`/SongList?id=${item.id}&title=${item.title}`">
         <img :src="item.images[2].url" class="card-img-top">
@@ -32,7 +32,7 @@ export default {
 .card{
   max-width: 20%;
   background: none;
-  border: 2px solid transparent;
+  border: 5px solid transparent;
   border-radius: 10px;
   overflow: hidden;
 }

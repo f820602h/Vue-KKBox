@@ -2,16 +2,20 @@
   <div>
     <div class="d-flex align-items-center justify-content-between mt-5">
       <h1 class="text-light font-weight-bold">{{ title }}</h1>
-      <button class="btn btn-outline-light">全部播放</button>
+      <!-- <button class="btn btn-outline-light" @click="login">全部播放</button> -->
+      <button class="btn btn-outline-light" @click="playKKlist">試聽此歌單</button>
     </div>
     <hr>
-    <ListTable :listData="listData"/>
+    <TopThreeCard :listData="topThree"/>
+    <ListTable :listData="other" :start="4"/>
   </div>
 </template>
 
 <script>
 import ListTable from '@/components/ListTable'
+import TopThreeCard from '@/components/TopThreeCard'
 import { mapGetters, mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -22,11 +26,18 @@ export default {
     }
   },
   components: {
-    ListTable
+    ListTable,
+    TopThreeCard
   },
   computed: {
     ...mapGetters(['getApiConfig']),
-    ...mapState(['key'])
+    ...mapState(['key']),
+    topThree () {
+      return this.listData.slice(0, 3)
+    },
+    other () {
+      return this.listData.slice(4)
+    }
   },
   methods: {
     // 用KKBOX API取得榜單歌曲
@@ -64,7 +75,7 @@ export default {
           title: this.title,
           description: this.title,
           tags: [ this.title ],
-          defaultLanguage: 'en'
+          defaultLanguage: 'tc'
         },
         status: { 'privacyStatus': 'private' }
       }
@@ -94,6 +105,10 @@ export default {
     // 用YouTube播放器播放清單
     playListSong (playListID) {
       this.$store.commit('SET_VIDEO_ID', playListID)
+    },
+    playKKlist () {
+      this.$store.commit('SET_LIST_ID', this.$route.query.id)
+      this.$store.commit('SET_PLAYER_TYPE', 'kkbox')
     }
   },
   mounted () {
@@ -103,7 +118,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 hr{
   border-top: 1px solid white
 }

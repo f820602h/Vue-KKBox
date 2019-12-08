@@ -9,9 +9,11 @@ export default new Vuex.Store({
   state: {
     ready: false,
     token: '',
-    key: 'AIzaSyB1_z4DTc1TjBEkknWUpYjVqc7cN96HlnM',
+    key: 'AIzaSyCW_sKFqpwDdBimQCRRwxGMhBU-L1Kcwjc',
     musicId: '',
+    listId: '',
     videoId: '',
+    playerType: '',
     charts: []
   },
   getters: {
@@ -32,8 +34,14 @@ export default new Vuex.Store({
     SET_MUSIC_ID (state, id) {
       state.musicId = id
     },
+    SET_LIST_ID (state, id) {
+      state.listId = id
+    },
     SET_VIDEO_ID (state, id) {
       state.videoId = id
+    },
+    SET_PLAYER_TYPE (state, type) {
+      state.playerType = type
     }
   },
   actions: {
