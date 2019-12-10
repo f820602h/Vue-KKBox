@@ -2,10 +2,11 @@
   <div id="app">
     <div class="bgAnimat"></div>
     <Navbar />
-    <div class="container padding">
+    <div class="container pt-5 padding">
       <router-view v-if="ready"/>
     </div>
     <MusicPlayer />
+    <Footer v-if="ready"/>
   </div>
 </template>
 
@@ -13,11 +14,13 @@
 import { mapActions, mapMutations, mapState } from 'vuex'
 import Navbar from '@/components/Navbar'
 import MusicPlayer from '@/components/MusicPlayer'
+import Footer from '@/components/Footer'
 
 export default {
   components: {
     Navbar,
-    MusicPlayer
+    MusicPlayer,
+    Footer
   },
   computed: {
     ...mapState(['ready'])
