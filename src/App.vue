@@ -2,8 +2,11 @@
   <div id="app">
     <div class="bgAnimat"></div>
     <Navbar />
-    <div class="container pt-5 padding">
+    <div class="container padding">
       <router-view v-if="ready"/>
+      <div v-else class="loading d-flex justify-content-center align-items-center text-white h3">
+        載入中...
+      </div>
     </div>
     <MusicPlayer />
     <Footer v-if="ready"/>
@@ -48,7 +51,11 @@ body{
   min-height: 100vh;
   overflow-x: hidden;
 }
+.loading {
+  height: calc(100vh - 50px);
+}
 .padding{
+  padding-top: 56px;
   padding-bottom: 200px;
 }
 .bgAnimat{
