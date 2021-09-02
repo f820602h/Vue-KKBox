@@ -50,15 +50,16 @@ export default new Vuex.Store({
         headers: {
           Accept: 'application/x-www-form-urlencoded',
           'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        },
+        crossdomain: true
       }
       const oauth = {
         grant_type: 'client_credentials',
-        client_id: '3ff2253ebfd6daf6ba80564803a8a673',
-        client_secret: 'aae46637ec523c3e3b15b610645fe830'
+        client_id: 'ad8b3eaf6681e082f7f7ca1a88c31ade',
+        client_secret: '33632c90f85e9c11c7938096ca9174aa'
       }
       return new Promise((resolve, reject) => {
-        axios.post('https://cors-anywhere.herokuapp.com/https://account.kkbox.com/oauth2/token', qs.stringify(oauth), config)
+        axios.post('/token', qs.stringify(oauth), config)
           .then((res) => {
             commit('SET_TOKEN', res.data.access_token)
             resolve(res)
