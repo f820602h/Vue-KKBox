@@ -59,7 +59,7 @@ export default new Vuex.Store({
         client_secret: '33632c90f85e9c11c7938096ca9174aa'
       }
       return new Promise((resolve, reject) => {
-        axios.post('/token', qs.stringify(oauth), config)
+        axios.post('https://all-the-cors.herokuapp.com/https://account.kkbox.com/oauth2/token', qs.stringify(oauth), config)
           .then((res) => {
             commit('SET_TOKEN', res.data.access_token)
             resolve(res)
